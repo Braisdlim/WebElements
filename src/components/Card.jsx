@@ -145,23 +145,22 @@ export default function CardExamples() {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-[#111] min-h-screen w-full">
-      <div className="max-w-4xl mx-auto px-4 py-10">
-        <div className="flex items-center gap-4 mb-8">
-          <button
-            onClick={() => navigate("/")}
-            className="px-4 py-2 bg-zinc-800 text-white rounded-lg hover:bg-zinc-700 transition-colors"
-          >
-            ← Volver a la galería
-          </button>
-        </div>
-        
-        <header className="mb-12">
-          <h1 className="text-4xl font-bold text-white mb-4">Card</h1>
-          <p className="text-lg text-zinc-400">
-            Tarjetas para mostrar información estructurada. Incluye variantes con imágenes, acciones, badges, avatares y efectos hover.
-          </p>
-        </header>
+    <div className="max-w-4xl mx-auto px-4 py-10">
+      <div className="flex items-center gap-4 mb-8">
+        <button
+          onClick={() => navigate("/")}
+          className="px-4 py-2 bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg hover:bg-[var(--bg-tertiary)] transition-colors"
+        >
+          ← Volver a la galería
+        </button>
+      </div>
+      
+      <header className="mb-12">
+        <h1 className="text-4xl font-bold text-[var(--text-primary)] mb-4">Card</h1>
+        <p className="text-lg text-[var(--text-secondary)]">
+          Tarjetas para mostrar información estructurada. Incluye variantes con imágenes, acciones, badges, avatares y efectos hover.
+        </p>
+      </header>
 
         <div className="space-y-8">
           {cardVariants.map((variant, index) => (
@@ -222,6 +221,5 @@ export default function CardExamples() {
           ))}
         </div>
       </div>
-    </div>
   );
 } 

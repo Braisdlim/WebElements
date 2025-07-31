@@ -3,7 +3,6 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { duotoneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import Layout from './Layout';
 
 const buttonVariants = [
   {
@@ -61,16 +60,15 @@ export default function ButtonExamples() {
   const [expanded, setExpanded] = useState(null);
   const navigate = useNavigate();
   return (
-    <Layout>
-      <div className="max-w-3xl mx-auto px-4 py-10">
-        <button
-          className="mb-8 px-4 py-2 bg-zinc-900 text-zinc-200 border border-zinc-700 rounded hover:bg-zinc-800 transition"
-          onClick={() => navigate(-1)}
-        >
-          ← Volver a la galería
-        </button>
-        <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-2 tracking-tight">Button</h1>
-        <p className="text-lg text-zinc-400 mb-8">Botones que disparan una acción como enviar un formulario o mostrar/ocultar un componente de interfaz.</p>
+    <div className="max-w-3xl mx-auto px-4 py-10">
+      <button
+        className="mb-8 px-4 py-2 bg-[var(--bg-secondary)] text-[var(--text-primary)] border border-[var(--border-primary)] rounded hover:bg-[var(--bg-tertiary)] transition"
+        onClick={() => navigate(-1)}
+      >
+        ← Volver a la galería
+      </button>
+      <h1 className="text-4xl md:text-5xl font-extrabold text-[var(--text-primary)] mb-2 tracking-tight">Button</h1>
+      <p className="text-lg text-[var(--text-secondary)] mb-8">Botones que disparan una acción como enviar un formulario o mostrar/ocultar un componente de interfaz.</p>
         <div className="flex flex-col gap-6">
           {buttonVariants.map((variant, i) => (
             <div 
@@ -113,6 +111,5 @@ export default function ButtonExamples() {
           ))}
         </div>
       </div>
-    </Layout>
   );
 } 
