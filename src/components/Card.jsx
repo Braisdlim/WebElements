@@ -167,7 +167,8 @@ export default function CardExamples() {
           {cardVariants.map((variant, index) => (
             <motion.div
               key={variant.name}
-              className="bg-zinc-900 rounded-2xl border border-zinc-800 p-6"
+              className="bg-zinc-900 rounded-2xl border border-zinc-800 p-6 relative"
+              style={{ zIndex: cardVariants.length - index }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}

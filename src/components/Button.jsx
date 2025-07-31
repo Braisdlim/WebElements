@@ -73,7 +73,11 @@ export default function ButtonExamples() {
         <p className="text-lg text-zinc-400 mb-8">Botones que disparan una acción como enviar un formulario o mostrar/ocultar un componente de interfaz.</p>
         <div className="flex flex-col gap-6">
           {buttonVariants.map((variant, i) => (
-            <div key={variant.name} className="rounded-xl bg-zinc-900 border border-zinc-800 p-6 shadow flex flex-col gap-3">
+            <div 
+              key={variant.name} 
+              className="rounded-xl bg-zinc-900 border border-zinc-800 p-6 shadow flex flex-col gap-3 relative"
+              style={{ zIndex: buttonVariants.length - i }}
+            >
               <div className="flex items-center gap-4 mb-2">
                 <span className="text-zinc-200 font-semibold text-sm w-32">{variant.name}</span>
                 <div>{variant.preview}</div>

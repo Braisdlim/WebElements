@@ -31,23 +31,23 @@ const sidebarVariants = [
   </div>
 </div>`,
     preview: (
-      <div className="w-64 h-32 bg-zinc-900 border-r border-zinc-800">
+      <div className="w-64 h-32 bg-zinc-900 border-r border-zinc-800 overflow-hidden relative">
         <div className="p-4">
-          <div className="text-white font-bold text-xl mb-6">Logo</div>
-          <nav className="space-y-2">
-            <a href="#" className="flex items-center gap-3 px-3 py-2 text-white hover:bg-zinc-800 rounded-lg transition-colors">
+          <div className="text-white font-bold text-xl mb-2">Logo</div>
+          <nav className="space-y-1">
+            <a href="#" className="flex items-center gap-3 px-3 py-1 text-white hover:bg-zinc-800 rounded-lg transition-colors">
               <span>🏠</span>
               <span>Dashboard</span>
             </a>
-            <a href="#" className="flex items-center gap-3 px-3 py-2 text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors">
+            <a href="#" className="flex items-center gap-3 px-3 py-1 text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors">
               <span>📊</span>
               <span>Analytics</span>
             </a>
-            <a href="#" className="flex items-center gap-3 px-3 py-2 text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors">
+            <a href="#" className="flex items-center gap-3 px-3 py-1 text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors">
               <span>👥</span>
               <span>Users</span>
             </a>
-            <a href="#" className="flex items-center gap-3 px-3 py-2 text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors">
+            <a href="#" className="flex items-center gap-3 px-3 py-1 text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors">
               <span>⚙️</span>
               <span>Settings</span>
             </a>
@@ -78,9 +78,9 @@ const sidebarVariants = [
   </div>
 </div>`,
     preview: (
-      <div className="w-16 h-32 bg-zinc-900 border-r border-zinc-800">
+      <div className="w-16 h-32 bg-zinc-900 border-r border-zinc-800 overflow-hidden relative">
         <div className="p-4">
-          <div className="text-white font-bold text-xl mb-6 text-center">L</div>
+          <div className="text-white font-bold text-xl mb-4 text-center">L</div>
           <nav className="space-y-2">
             <a href="#" className="flex items-center justify-center w-8 h-8 text-white hover:bg-zinc-800 rounded-lg transition-colors" title="Dashboard">
               <span>🏠</span>
@@ -136,16 +136,16 @@ const sidebarVariants = [
   </div>
 </div>`,
     preview: (
-      <div className="w-64 h-32 bg-zinc-900 border-r border-zinc-800">
+      <div className="w-64 h-32 bg-zinc-900 border-r border-zinc-800 overflow-hidden relative">
         <div className="p-4">
-          <div className="text-white font-bold text-xl mb-6">Logo</div>
-          <nav className="space-y-2">
-            <a href="#" className="flex items-center gap-3 px-3 py-2 text-white hover:bg-zinc-800 rounded-lg transition-colors">
+          <div className="text-white font-bold text-xl mb-2">Logo</div>
+          <nav className="space-y-1">
+            <a href="#" className="flex items-center gap-3 px-3 py-1 text-white hover:bg-zinc-800 rounded-lg transition-colors">
               <span>🏠</span>
               <span>Dashboard</span>
             </a>
             <div className="space-y-1">
-              <button className="flex items-center justify-between w-full px-3 py-2 text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors">
+              <button className="flex items-center justify-between w-full px-3 py-1 text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors">
                 <div className="flex items-center gap-3">
                   <span>📊</span>
                   <span>Reports</span>
@@ -153,17 +153,17 @@ const sidebarVariants = [
                 <span>▼</span>
               </button>
               <div className="ml-6 space-y-1">
-                <a href="#" className="flex items-center gap-3 px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors">
+                <a href="#" className="flex items-center gap-3 px-3 py-1 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors">
                   <span>📈</span>
                   <span>Analytics</span>
                 </a>
-                <a href="#" className="flex items-center gap-3 px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors">
+                <a href="#" className="flex items-center gap-3 px-3 py-1 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors">
                   <span>📋</span>
                   <span>Sales</span>
                 </a>
               </div>
             </div>
-            <a href="#" className="flex items-center gap-3 px-3 py-2 text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors">
+            <a href="#" className="flex items-center gap-3 px-3 py-1 text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors">
               <span>👥</span>
               <span>Users</span>
             </a>
@@ -208,19 +208,19 @@ const sidebarVariants = [
   </div>
 </div>`,
     preview: (
-      <div className="w-64 h-32 bg-zinc-900 border-r border-zinc-800 flex flex-col">
+      <div className="w-64 h-32 bg-zinc-900 border-r border-zinc-800 flex flex-col overflow-hidden relative">
         <div className="p-4 flex-1">
-          <div className="text-white font-bold text-xl mb-6">Logo</div>
-          <nav className="space-y-2">
-            <a href="#" className="flex items-center gap-3 px-3 py-2 text-white hover:bg-zinc-800 rounded-lg transition-colors">
+          <div className="text-white font-bold text-xl mb-2">Logo</div>
+          <nav className="space-y-1">
+            <a href="#" className="flex items-center gap-3 px-3 py-1 text-white hover:bg-zinc-800 rounded-lg transition-colors">
               <span>🏠</span>
               <span>Dashboard</span>
             </a>
-            <a href="#" className="flex items-center gap-3 px-3 py-2 text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors">
+            <a href="#" className="flex items-center gap-3 px-3 py-1 text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors">
               <span>📊</span>
               <span>Analytics</span>
             </a>
-            <a href="#" className="flex items-center gap-3 px-3 py-2 text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors">
+            <a href="#" className="flex items-center gap-3 px-3 py-1 text-zinc-300 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors">
               <span>👥</span>
               <span>Users</span>
             </a>
@@ -276,7 +276,8 @@ export default function Sidebar() {
           {sidebarVariants.map((variant, index) => (
             <motion.div
               key={variant.name}
-              className="bg-zinc-900 rounded-2xl border border-zinc-800 p-6"
+              className="bg-zinc-900 rounded-2xl border border-zinc-800 p-6 relative"
+              style={{ zIndex: sidebarVariants.length - index }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
