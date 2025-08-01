@@ -3,15 +3,44 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useTheme } from "../contexts/ThemeContext";
 
+// Hook personalizado para manejar favoritos
+function useFavorites() {
+  const [favorites, setFavorites] = useState(() => {
+    const saved = localStorage.getItem('webelements-favorites');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('webelements-favorites', JSON.stringify(favorites));
+  }, [favorites]);
+
+  const toggleFavorite = (componentName) => {
+    setFavorites(prev => 
+      prev.includes(componentName) 
+        ? prev.filter(name => name !== componentName)
+        : [...prev, componentName]
+    );
+  };
+
+  const isFavorite = (componentName) => favorites.includes(componentName);
+
+  return { favorites, toggleFavorite, isFavorite };
+}
+
 export default function Header() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const navigate = useNavigate();
   const location = useLocation();
   const { isDark, toggleTheme } = useTheme();
+  const { favorites, toggleFavorite, isFavorite } = useFavorites();
+  
+  // Verificar si estamos en la vista de favoritos
+  const isInFavoritesView = location.search.includes('favorites=true');
 
   // Componentes disponibles para búsqueda
   const allComponents = [
@@ -248,6 +277,29 @@ export default function Header() {
 
           {/* Acciones del usuario */}
           <div className="flex items-center gap-4">
+            {/* Botón de favoritos */}
+            <div className="relative">
+              <button
+                onClick={() => {
+                  if (isInFavoritesView) {
+                    navigate('/');
+                  } else {
+                    navigate('/?favorites=true');
+                  }
+                }}
+                className={`p-2 transition-colors relative ${
+                  isInFavoritesView 
+                    ? 'text-yellow-500 hover:text-yellow-400' 
+                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                }`}
+                title={isInFavoritesView ? "Ver todos" : "Ver favoritos"}
+              >
+                <span className="text-xl">
+                  {isInFavoritesView ? '★' : '☆'}
+                </span>
+              </button>
+            </div>
+
             <button 
               className="p-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" 
               title={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
@@ -264,7 +316,7 @@ export default function Header() {
               )}
             </button>
             <a 
-              href="https://github.com/tu-usuario/webelements" 
+              href="https://github.com/braisdlim/webelements" 
               target="_blank" 
               rel="noopener noreferrer"
               className="p-2 text-text-secondary hover:text-text-primary transition-colors" 
@@ -313,6 +365,10 @@ export default function Header() {
                 {["Navegación", "Formularios", "Contenido", "Feedback", "Interacción", "Multimedia", "Datos", "Efectos", "Utilidades", "Especializados"].map((category) => (
                   <button
                     key={category}
+                    onClick={() => {
+                      navigate(`/?category=${encodeURIComponent(category)}`);
+                      setIsMenuOpen(false);
+                    }}
                     className="block w-full text-left px-6 py-2 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] rounded transition-colors"
                   >
                     {category}

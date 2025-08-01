@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "../contexts/ThemeContext";
 
 const sidebarVariants = [
   {
@@ -252,6 +253,7 @@ function copyToClipboard(text) {
 export default function Sidebar() {
   const [expanded, setExpanded] = useState(null);
   const navigate = useNavigate();
+  const { isDark } = useTheme();
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
@@ -275,17 +277,27 @@ export default function Sidebar() {
           {sidebarVariants.map((variant, index) => (
             <motion.div
               key={variant.name}
-              className="bg-zinc-900 rounded-2xl border border-zinc-800 p-6 relative"
+              className={`rounded-2xl border p-6 relative ${
+                isDark 
+                  ? "bg-zinc-900 border-zinc-800" 
+                  : "bg-gray-100 border-gray-200"
+              }`}
               style={{ zIndex: sidebarVariants.length - index }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
             >
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-semibold text-white">{variant.name}</h3>
+                <h3 className={`text-xl font-semibold ${
+                  isDark ? "text-white" : "text-gray-800"
+                }`}>{variant.name}</h3>
                 <button
                   onClick={() => setExpanded(expanded === index ? null : index)}
-                  className="px-3 py-1 bg-zinc-800 text-zinc-300 rounded-lg hover:bg-zinc-700 transition-colors text-sm"
+                  className={`px-3 py-1 rounded-lg transition-colors text-sm ${
+                    isDark 
+                      ? "bg-zinc-800 text-zinc-300 hover:bg-zinc-700" 
+                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                  }`}
                 >
                   {expanded === index ? "Ocultar código" : "Ver código"}
                 </button>
@@ -318,7 +330,11 @@ export default function Sidebar() {
                       </SyntaxHighlighter>
                       <button
                         onClick={() => copyToClipboard(variant.code)}
-                        className="absolute top-2 right-2 px-3 py-1 bg-zinc-700 text-white rounded text-sm hover:bg-zinc-600 transition-colors"
+                        className={`absolute top-2 right-2 px-3 py-1 rounded text-sm transition-colors ${
+                          isDark 
+                            ? "bg-zinc-700 text-white hover:bg-zinc-600" 
+                            : "bg-gray-300 text-gray-700 hover:bg-gray-400"
+                        }`}
                       >
                         Copiar
                       </button>

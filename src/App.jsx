@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -81,6 +81,57 @@ import Print from "./components/Print";
 import Layout from "./components/Layout";
 import { BrowserRouter as Router, Routes, Route, useNavigate, useSearchParams } from "react-router-dom";
 
+// Hook personalizado para manejar favoritos
+function useFavorites() {
+  const [favorites, setFavorites] = useState(() => {
+    const saved = localStorage.getItem('webelements-favorites');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('webelements-favorites', JSON.stringify(favorites));
+  }, [favorites]);
+
+  const toggleFavorite = (componentName) => {
+    setFavorites(prev => 
+      prev.includes(componentName) 
+        ? prev.filter(name => name !== componentName)
+        : [...prev, componentName]
+    );
+  };
+
+  const isFavorite = (componentName) => favorites.includes(componentName);
+
+  return { favorites, toggleFavorite, isFavorite };
+}
+
+
+
+
+
+
+
+// Sistema de notificaciones
+function useNotifications() {
+  const [notifications, setNotifications] = useState([]);
+  
+  const addNotification = (message, type = 'info') => {
+    const id = Date.now();
+    setNotifications(prev => [...prev, { id, message, type }]);
+    
+    // Auto-remover después de 3 segundos
+    setTimeout(() => {
+      setNotifications(prev => prev.filter(n => n.id !== id));
+    }, 3000);
+  };
+  
+  const removeNotification = (id) => {
+    setNotifications(prev => prev.filter(n => n.id !== id));
+  };
+  
+  return { notifications, addNotification, removeNotification };
+}
+
 const components = [
   // Navegación y Layout
   {
@@ -88,6 +139,7 @@ const components = [
     category: "Navegación",
     description: "Botones interactivos con múltiples variantes y estados",
     route: "/button",
+    tags: ["interactivo", "click", "acción", "primario"],
     preview: <button className="px-4 py-2 bg-zinc-800 text-white rounded-lg hover:bg-zinc-700 transition-colors">Button</button>
   },
   {
@@ -95,6 +147,7 @@ const components = [
     category: "Navegación", 
     description: "Barra de navegación responsive con menú hamburguesa",
     route: "/navigation",
+    tags: ["header", "responsive", "menú", "hamburguesa"],
     preview: <div className="flex items-center gap-4 p-2 bg-zinc-800 rounded-lg"><div className="w-6 h-0.5 bg-white"></div><span className="text-white text-sm">Navigation</span></div>
   },
   {
@@ -102,6 +155,7 @@ const components = [
     category: "Navegación",
     description: "Panel lateral con navegación y submenús",
     route: "/sidebar", 
+    tags: ["lateral", "menú", "submenús", "navegación"],
     preview: <div className="w-16 h-12 bg-zinc-800 rounded-lg flex items-center justify-center"><div className="w-4 h-4 bg-white rounded"></div></div>
   },
   {
@@ -567,15 +621,19 @@ function MainGallery() {
   const [searchParams] = useSearchParams();
   const selectedCategory = searchParams.get('category');
   const searchQuery = searchParams.get('search') || '';
+  const showFavorites = searchParams.get('favorites') === 'true';
+  const { favorites, toggleFavorite, isFavorite } = useFavorites();
+  const { notifications, addNotification, removeNotification } = useNotifications();
 
-  // Filtrar componentes por categoría y búsqueda
+  // Filtrar componentes por categoría, búsqueda y favoritos
   const filteredComponents = components.filter(comp => {
     const matchesCategory = !selectedCategory || comp.category === selectedCategory;
     const matchesSearch = !searchQuery || 
       comp.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       comp.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       comp.category.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+    const matchesFavorites = !showFavorites || isFavorite(comp.name);
+    return matchesCategory && matchesSearch && matchesFavorites;
   });
 
   const clearFilters = () => {
@@ -598,8 +656,12 @@ function MainGallery() {
             Colección visual de componentes frontend reutilizables. Inspírate, copia y usa en tus proyectos.
           </p>
           
+
+          
+
+          
           {/* Filtros activos */}
-          {(selectedCategory || searchQuery) && (
+          {(selectedCategory || searchQuery || showFavorites) && (
             <motion.div 
               className="flex items-center gap-4 mt-6 p-4 bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-primary)]"
               initial={{ opacity: 0, y: -20 }}
@@ -616,6 +678,11 @@ function MainGallery() {
                   Búsqueda: "{searchQuery}"
                 </span>
               )}
+              {showFavorites && (
+                <span className="px-3 py-1 bg-yellow-600 text-white rounded-full text-sm">
+                  Favoritos ({favorites.length})
+                </span>
+              )}
               <button
                 onClick={clearFilters}
                 className="px-3 py-1 bg-[var(--bg-tertiary)] text-[var(--text-primary)] rounded-full text-sm hover:bg-[var(--border-primary)] transition-colors"
@@ -627,7 +694,7 @@ function MainGallery() {
         </header>
         
         {/* Contador de resultados */}
-        {(selectedCategory || searchQuery) && (
+        {(selectedCategory || searchQuery || showFavorites) && (
           <motion.div 
             className="mb-6 text-center"
             initial={{ opacity: 0 }}
@@ -637,6 +704,7 @@ function MainGallery() {
               Mostrando {filteredComponents.length} de {components.length} componentes
               {selectedCategory && ` en la categoría "${selectedCategory}"`}
               {searchQuery && ` que coinciden con "${searchQuery}"`}
+              {showFavorites && ` en favoritos`}
             </p>
           </motion.div>
         )}
@@ -659,7 +727,29 @@ function MainGallery() {
                   {comp.preview}
                 </div>
                 <div className="mt-4">
-                  <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-1">{comp.name}</h2>
+                  <div className="flex items-center justify-between mb-1">
+                    <h2 className="text-2xl font-bold text-[var(--text-primary)]">{comp.name}</h2>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleFavorite(comp.name);
+                        addNotification(
+                          isFavorite(comp.name) 
+                            ? `${comp.name} removido de favoritos` 
+                            : `${comp.name} agregado a favoritos`,
+                          'success'
+                        );
+                      }}
+                      className={`p-2 rounded-full transition-colors ${
+                        isFavorite(comp.name)
+                          ? 'text-yellow-500 hover:text-yellow-400'
+                          : 'text-gray-400 hover:text-yellow-500'
+                      }`}
+                      title={isFavorite(comp.name) ? 'Quitar de favoritos' : 'Agregar a favoritos'}
+                    >
+                      {isFavorite(comp.name) ? '★' : '☆'}
+                    </button>
+                  </div>
                   <p className="text-[var(--text-secondary)] text-base">{comp.description}</p>
                   <div className="flex items-center gap-2 mt-2">
                     <span className="text-xs px-2 py-1 bg-[var(--bg-tertiary)] text-[var(--text-tertiary)] rounded-full">
@@ -693,6 +783,28 @@ function MainGallery() {
               </button>
             </motion.div>
           )}
+        </div>
+        
+        {/* Notificaciones */}
+        <div className="fixed top-4 right-4 z-50 space-y-2">
+          {notifications.map(notification => (
+            <motion.div
+              key={notification.id}
+              className={`px-4 py-3 rounded-lg shadow-lg max-w-sm ${
+                notification.type === 'success' ? 'bg-green-500 text-white' :
+                notification.type === 'error' ? 'bg-red-500 text-white' :
+                notification.type === 'warning' ? 'bg-yellow-500 text-white' :
+                'bg-blue-500 text-white'
+              }`}
+              initial={{ opacity: 0, x: 300 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 300 }}
+              onClick={() => removeNotification(notification.id)}
+              style={{ cursor: 'pointer' }}
+            >
+              {notification.message}
+            </motion.div>
+          ))}
         </div>
       </div>
     </Layout>
