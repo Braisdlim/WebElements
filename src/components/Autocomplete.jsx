@@ -15,16 +15,16 @@ const autocompleteVariants = [
   />
   <div className="absolute top-full left-0 right-0 mt-1 bg-zinc-900 border border-zinc-700 rounded-lg shadow-lg">
     <div className="py-1">
-      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm">
+      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm truncate">
         United States
       </div>
-      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm">
+      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm truncate">
         United Kingdom
       </div>
-      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm">
+      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm truncate">
         Canada
       </div>
-      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm">
+      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm truncate">
         Australia
       </div>
     </div>
@@ -39,16 +39,16 @@ const autocompleteVariants = [
         />
         <div className="absolute top-full left-0 right-0 mt-1 bg-zinc-900 border border-zinc-700 rounded-lg shadow-lg">
           <div className="py-1">
-            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm">
+            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm truncate">
               United States
             </div>
-            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm">
+            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm truncate">
               United Kingdom
             </div>
-            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm">
+            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm truncate">
               Canada
             </div>
-            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm">
+            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm truncate">
               Australia
             </div>
           </div>
@@ -66,21 +66,21 @@ const autocompleteVariants = [
   />
   <div className="absolute top-full left-0 right-0 mt-1 bg-zinc-900 border border-zinc-700 rounded-lg shadow-lg">
     <div className="py-1">
-      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm flex items-center gap-3">
-        <span>📱</span>
-        <span>iPhone 13 Pro</span>
+      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm flex items-center gap-3 min-w-0">
+        <span className="flex-shrink-0">📱</span>
+        <span className="truncate">iPhone 13 Pro</span>
       </div>
-      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm flex items-center gap-3">
-        <span>💻</span>
-        <span>MacBook Air</span>
+      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm flex items-center gap-3 min-w-0">
+        <span className="flex-shrink-0">💻</span>
+        <span className="truncate">MacBook Air</span>
       </div>
-      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm flex items-center gap-3">
-        <span>⌚</span>
-        <span>Apple Watch</span>
+      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm flex items-center gap-3 min-w-0">
+        <span className="flex-shrink-0">⌚</span>
+        <span className="truncate">Apple Watch</span>
       </div>
-      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm flex items-center gap-3">
-        <span>🎧</span>
-        <span>AirPods Pro</span>
+      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm flex items-center gap-3 min-w-0">
+        <span className="flex-shrink-0">🎧</span>
+        <span className="truncate">AirPods Pro</span>
       </div>
     </div>
   </div>
@@ -94,21 +94,21 @@ const autocompleteVariants = [
         />
         <div className="absolute top-full left-0 right-0 mt-1 bg-zinc-900 border border-zinc-700 rounded-lg shadow-lg">
           <div className="py-1">
-            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm flex items-center gap-3">
-              <span>📱</span>
-              <span>iPhone 13 Pro</span>
+            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm flex items-center gap-3 min-w-0">
+              <span className="flex-shrink-0">📱</span>
+              <span className="truncate">iPhone 13 Pro</span>
             </div>
-            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm flex items-center gap-3">
-              <span>💻</span>
-              <span>MacBook Air</span>
+            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm flex items-center gap-3 min-w-0">
+              <span className="flex-shrink-0">💻</span>
+              <span className="truncate">MacBook Air</span>
             </div>
-            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm flex items-center gap-3">
-              <span>⌚</span>
-              <span>Apple Watch</span>
+            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm flex items-center gap-3 min-w-0">
+              <span className="flex-shrink-0">⌚</span>
+              <span className="truncate">Apple Watch</span>
             </div>
-            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm flex items-center gap-3">
-              <span>🎧</span>
-              <span>AirPods Pro</span>
+            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm flex items-center gap-3 min-w-0">
+              <span className="flex-shrink-0">🎧</span>
+              <span className="truncate">AirPods Pro</span>
             </div>
           </div>
         </div>
@@ -125,22 +125,22 @@ const autocompleteVariants = [
   />
   <div className="absolute top-full left-0 right-0 mt-1 bg-zinc-900 border border-zinc-700 rounded-lg shadow-lg">
     <div className="py-1">
-      <div className="px-4 py-1 text-zinc-400 text-xs font-medium">Recent Searches</div>
-      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm">
+      <div className="px-4 py-1 text-zinc-400 text-xs font-medium truncate">Recent Searches</div>
+      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm truncate">
         React components
       </div>
-      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm">
+      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm truncate">
         Tailwind CSS
       </div>
       <div className="border-t border-zinc-700 my-1"></div>
-      <div className="px-4 py-1 text-zinc-400 text-xs font-medium">Suggestions</div>
-      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm">
+      <div className="px-4 py-1 text-zinc-400 text-xs font-medium truncate">Suggestions</div>
+      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm truncate">
         React hooks
       </div>
-      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm">
+      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm truncate">
         React router
       </div>
-      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm">
+      <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm truncate">
         React state
       </div>
     </div>
@@ -156,21 +156,21 @@ const autocompleteVariants = [
         <div className="absolute top-full left-0 right-0 mt-1 bg-zinc-900 border border-zinc-700 rounded-lg shadow-lg">
           <div className="py-1">
             <div className="px-4 py-1 text-zinc-400 text-xs font-medium">Recent Searches</div>
-            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm">
+            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm truncate">
               React components
             </div>
-            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm">
+            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm truncate">
               Tailwind CSS
             </div>
             <div className="border-t border-zinc-700 my-1"></div>
-            <div className="px-4 py-1 text-zinc-400 text-xs font-medium">Suggestions</div>
-            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm">
+            <div className="px-4 py-1 text-zinc-400 text-xs font-medium truncate">Suggestions</div>
+            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm truncate">
               React hooks
             </div>
-            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm">
+            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm truncate">
               React router
             </div>
-            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm">
+            <div className="px-4 py-2 text-white hover:bg-zinc-800 cursor-pointer text-sm truncate">
               React state
             </div>
           </div>
