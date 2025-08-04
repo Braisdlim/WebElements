@@ -642,17 +642,17 @@ function MainGallery() {
 
   return (
     <Layout>
-      <div className="max-w-6xl mx-auto px-4 py-10">
-        <header className="flex flex-col items-center mb-12">
-          <div className="flex items-center gap-4 mb-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
+        <header className="flex flex-col items-center mb-8 sm:mb-10 lg:mb-12">
+          <div className="flex items-center gap-2 sm:gap-4 mb-4 sm:mb-6">
             <img 
               src="/logo.png" 
               alt="WebElements Logo" 
-              className="w-16 h-16 rounded-xl object-cover shadow-lg"
+              className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl object-cover shadow-lg"
             />
-            <h1 className="text-5xl md:text-6xl font-extrabold text-[var(--text-primary)] tracking-tight">WebElements</h1>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[var(--text-primary)] tracking-tight">WebElements</h1>
           </div>
-          <p className="text-lg md:text-2xl text-[var(--text-secondary)] text-center max-w-2xl font-light">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-[var(--text-secondary)] text-center max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl font-light px-4">
             Colección visual de componentes frontend reutilizables. Inspírate, copia y usa en tus proyectos.
           </p>
           
@@ -663,29 +663,29 @@ function MainGallery() {
           {/* Filtros activos */}
           {(selectedCategory || searchQuery || showFavorites) && (
             <motion.div 
-              className="flex items-center gap-4 mt-6 p-4 bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-primary)]"
+              className="flex flex-wrap items-center gap-2 sm:gap-4 mt-4 sm:mt-6 p-3 sm:p-4 bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-primary)] mx-4"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <span className="text-[var(--text-secondary)] text-sm">Filtros activos:</span>
+              <span className="text-[var(--text-secondary)] text-xs sm:text-sm">Filtros activos:</span>
               {selectedCategory && (
-                <span className="px-3 py-1 bg-blue-600 text-white rounded-full text-sm">
+                <span className="px-2 sm:px-3 py-1 bg-blue-600 text-white rounded-full text-xs sm:text-sm">
                   Categoría: {selectedCategory}
                 </span>
               )}
               {searchQuery && (
-                <span className="px-3 py-1 bg-green-600 text-white rounded-full text-sm">
+                <span className="px-2 sm:px-3 py-1 bg-green-600 text-white rounded-full text-xs sm:text-sm">
                   Búsqueda: "{searchQuery}"
                 </span>
               )}
               {showFavorites && (
-                <span className="px-3 py-1 bg-yellow-600 text-white rounded-full text-sm">
+                <span className="px-2 sm:px-3 py-1 bg-yellow-600 text-white rounded-full text-xs sm:text-sm">
                   Favoritos ({favorites.length})
                 </span>
               )}
               <button
                 onClick={clearFilters}
-                className="px-3 py-1 bg-[var(--bg-tertiary)] text-[var(--text-primary)] rounded-full text-sm hover:bg-[var(--border-primary)] transition-colors"
+                className="px-2 sm:px-3 py-1 bg-[var(--bg-tertiary)] text-[var(--text-primary)] rounded-full text-xs sm:text-sm hover:bg-[var(--border-primary)] transition-colors"
               >
                 Limpiar filtros
               </button>
@@ -696,11 +696,11 @@ function MainGallery() {
         {/* Contador de resultados */}
         {(selectedCategory || searchQuery || showFavorites) && (
           <motion.div 
-            className="mb-6 text-center"
+            className="mb-4 sm:mb-6 text-center px-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            <p className="text-[var(--text-secondary)]">
+            <p className="text-xs sm:text-sm text-[var(--text-secondary)]">
               Mostrando {filteredComponents.length} de {components.length} componentes
               {selectedCategory && ` en la categoría "${selectedCategory}"`}
               {searchQuery && ` que coinciden con "${searchQuery}"`}
@@ -709,13 +709,13 @@ function MainGallery() {
           </motion.div>
         )}
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-0">
           {filteredComponents.length > 0 ? (
             filteredComponents.map((comp, i) => (
               <motion.div
                 key={comp.name}
                 className={
-                  'relative rounded-2xl bg-[var(--bg-secondary)] shadow-[0_2px_24px_0_rgba(0,0,0,0.45)] border border-[var(--border-primary)] p-6 flex flex-col gap-4 group cursor-pointer overflow-hidden transition-all duration-200 hover:ring-2 hover:ring-[var(--accent-primary)]/20'
+                  'relative rounded-xl sm:rounded-2xl bg-[var(--bg-secondary)] shadow-[0_2px_24px_0_rgba(0,0,0,0.45)] border border-[var(--border-primary)] p-4 sm:p-6 flex flex-col gap-3 sm:gap-4 group cursor-pointer overflow-hidden transition-all duration-200 hover:ring-2 hover:ring-[var(--accent-primary)]/20'
                 }
                 whileHover={{ scale: 1.025, boxShadow: '0 4px 32px 0 rgba(0,0,0,0.65)' }}
                 onClick={() => comp.route ? navigate(comp.route) : null}
@@ -723,12 +723,12 @@ function MainGallery() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * i, duration: 0.5 }}
               >
-                <div className="flex flex-col items-center justify-center min-h-[120px]">
+                <div className="flex flex-col items-center justify-center min-h-[80px] sm:min-h-[100px] lg:min-h-[120px]">
                   {comp.preview}
                 </div>
-                <div className="mt-4">
+                <div className="mt-2 sm:mt-4">
                   <div className="flex items-center justify-between mb-1">
-                    <h2 className="text-2xl font-bold text-[var(--text-primary)]">{comp.name}</h2>
+                    <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-[var(--text-primary)]">{comp.name}</h2>
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
@@ -740,7 +740,7 @@ function MainGallery() {
                           'success'
                         );
                       }}
-                      className={`p-2 rounded-full transition-colors ${
+                      className={`p-1 sm:p-2 rounded-full transition-colors ${
                         isFavorite(comp.name)
                           ? 'text-yellow-500 hover:text-yellow-400'
                           : 'text-gray-400 hover:text-yellow-500'
@@ -750,7 +750,7 @@ function MainGallery() {
                       {isFavorite(comp.name) ? '★' : '☆'}
                     </button>
                   </div>
-                  <p className="text-[var(--text-secondary)] text-base">{comp.description}</p>
+                  <p className="text-xs sm:text-sm lg:text-base text-[var(--text-secondary)]">{comp.description}</p>
                   <div className="flex items-center gap-2 mt-2">
                     <span className="text-xs px-2 py-1 bg-[var(--bg-tertiary)] text-[var(--text-tertiary)] rounded-full">
                       {comp.category}
@@ -761,13 +761,13 @@ function MainGallery() {
             ))
           ) : (
             <motion.div
-              className="col-span-full text-center py-12"
+              className="col-span-full text-center py-8 sm:py-12 px-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
-              <div className="text-6xl mb-4">🔍</div>
-              <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-2">No se encontraron componentes</h3>
-              <p className="text-[var(--text-secondary)] mb-4">
+              <div className="text-4xl sm:text-6xl mb-4">🔍</div>
+              <h3 className="text-lg sm:text-xl font-semibold text-[var(--text-primary)] mb-2">No se encontraron componentes</h3>
+              <p className="text-sm sm:text-base text-[var(--text-secondary)] mb-4">
                 {selectedCategory 
                   ? `No hay componentes en la categoría "${selectedCategory}"`
                   : searchQuery 
@@ -777,7 +777,7 @@ function MainGallery() {
               </p>
               <button
                 onClick={clearFilters}
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="px-4 sm:px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm sm:text-base"
               >
                 Limpiar filtros
               </button>

@@ -256,28 +256,28 @@ export default function Sidebar() {
   const { isDark } = useTheme();
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10">
-      <div className="flex items-center gap-4 mb-8">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
+      <div className="flex items-center gap-4 mb-6 sm:mb-8">
         <button
           onClick={() => navigate("/")}
-          className="px-4 py-2 bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg hover:bg-[var(--bg-tertiary)] transition-colors"
+          className="px-3 sm:px-4 py-2 bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg hover:bg-[var(--bg-tertiary)] transition-colors text-sm sm:text-base"
         >
           ← Volver a la galería
         </button>
       </div>
       
-      <header className="mb-12">
-        <h1 className="text-4xl font-bold text-[var(--text-primary)] mb-4">Sidebar</h1>
-        <p className="text-lg text-[var(--text-secondary)]">
+      <header className="mb-8 sm:mb-10 lg:mb-12">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[var(--text-primary)] mb-3 sm:mb-4">Sidebar</h1>
+        <p className="text-sm sm:text-base lg:text-lg text-[var(--text-secondary)]">
           Paneles laterales con navegación y submenús para organizar la interfaz.
         </p>
       </header>
 
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
           {sidebarVariants.map((variant, index) => (
             <motion.div
               key={variant.name}
-              className={`rounded-2xl border p-6 relative ${
+              className={`rounded-xl sm:rounded-2xl border p-4 sm:p-6 relative ${
                 isDark 
                   ? "bg-zinc-900 border-zinc-800" 
                   : "bg-gray-100 border-gray-200"
@@ -287,13 +287,13 @@ export default function Sidebar() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
             >
-              <div className="flex items-center justify-between mb-4">
-                <h3 className={`text-xl font-semibold ${
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 mb-4">
+                <h3 className={`text-lg sm:text-xl font-semibold ${
                   isDark ? "text-white" : "text-gray-800"
                 }`}>{variant.name}</h3>
                 <button
                   onClick={() => setExpanded(expanded === index ? null : index)}
-                  className={`px-3 py-1 rounded-lg transition-colors text-sm ${
+                  className={`px-2 sm:px-3 py-1 rounded-lg transition-colors text-xs sm:text-sm ${
                     isDark 
                       ? "bg-zinc-800 text-zinc-300 hover:bg-zinc-700" 
                       : "bg-gray-200 text-gray-700 hover:bg-gray-300"
@@ -330,7 +330,7 @@ export default function Sidebar() {
                       </SyntaxHighlighter>
                       <button
                         onClick={() => copyToClipboard(variant.code)}
-                        className={`absolute top-2 right-2 px-3 py-1 rounded text-sm transition-colors ${
+                        className={`absolute top-2 right-2 px-2 sm:px-3 py-1 rounded text-xs sm:text-sm transition-colors ${
                           isDark 
                             ? "bg-zinc-700 text-white hover:bg-zinc-600" 
                             : "bg-gray-300 text-gray-700 hover:bg-gray-400"

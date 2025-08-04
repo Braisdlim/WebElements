@@ -178,19 +178,19 @@ export default function Header() {
   return (
     <header className="bg-[var(--bg-secondary)] border-b border-[var(--border-primary)] sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo y navegación principal */}
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-4 sm:gap-6 lg:gap-8">
             <button
               onClick={() => navigate("/")}
-              className="flex items-center gap-2 text-[var(--text-primary)] hover:text-[var(--text-secondary)] transition-colors"
+              className="flex items-center gap-1 sm:gap-2 text-[var(--text-primary)] hover:text-[var(--text-secondary)] transition-colors"
             >
               <img 
                 src="/logo.png" 
                 alt="WebElements Logo" 
-                className="w-8 h-8 rounded-lg object-cover"
+                className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg object-cover"
               />
-              <span className="text-xl font-bold">WebElements</span>
+              <span className="text-lg sm:text-xl font-bold">WebElements</span>
             </button>
 
             {/* Navegación desktop */}
@@ -226,7 +226,7 @@ export default function Header() {
           </div>
 
           {/* Barra de búsqueda */}
-          <div className="flex-1 max-w-2xl mx-8 relative">
+          <div className="flex-1 max-w-xs sm:max-w-md lg:max-w-2xl mx-2 sm:mx-4 lg:mx-8 relative">
             <form onSubmit={handleSearchSubmit} className="relative">
               <input
                 type="text"
@@ -235,10 +235,10 @@ export default function Header() {
                 onFocus={() => setIsSearchFocused(true)}
                 onKeyPress={handleKeyPress}
                 placeholder="Buscar componentes..."
-                className="w-full px-4 py-2 pl-10 bg-[var(--bg-tertiary)] border border-[var(--border-primary)] rounded-lg text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                className="w-full px-3 sm:px-4 py-1.5 sm:py-2 pl-8 sm:pl-10 bg-[var(--bg-tertiary)] border border-[var(--border-primary)] rounded-lg text-xs sm:text-sm lg:text-base text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
               />
-              <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-                <svg className="w-4 h-4 text-[var(--text-tertiary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2">
+                <svg className="w-3 h-3 sm:w-4 sm:h-4 text-[var(--text-tertiary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </div>
